@@ -1,15 +1,11 @@
-## :wave: Welcome to AlgoTrading
+## Welcome to AlgoTrading
 
-:point_right: Open source project dedicated to delivering high quality alpha
-<br />
-:point_right: Advanced, high performance backtesting engine
-<br />
-:point_right: Sponsored by Vicarisi Ventures, a quantitative development company
-<br />
-:point_right: To learn more, visit https://vicarisi.com/
-<br />
+- Open source project dedicated to delivering high quality alpha
+- Advanced, high performance backtesting engine
+- Sponsored by Vicarisi Ventures, a quantitative development company
+- To learn more, visit https://vicarisi.com/
 
-### :raised_hand_with_fingers_splayed: Getting Started 
+### Getting Started 
 
 The general steps are as followed: 
 
@@ -22,7 +18,13 @@ The general steps are as followed:
 7. Print Scalar Statistics to Terminal
 8. Visual Results: Distribution, PnL, Volatility 
 
-### :raised_hand_with_fingers_splayed: Initialize Client
+### Initialize Client
+Instantiate an object that wraps all variables needed to connect to the Tradier API
+1. Paper Trading or Live Endpoint
+2. API Key
+3. Account ID
+4. Ticker Symbol
+5. Months to Grab Historical Data
 
 ```markdown
 from Data.Client import Client
@@ -35,14 +37,21 @@ months = 60
 client = Client(endpoint, api_key, accountid, ticker, months)
 ```
 
-### :raised_hand_with_fingers_splayed: Fetch Historical Data
+### Fetch Historical Data
+Fetch historical data from Tradier and store in numpy arrays
+1. Pass Client
+2. Get OHLC price data
 ```markdown
 from Data.Historical import get_historical_data
 
 ohlc = get_historical_data(client)
 ```
 
-### :raised_hand_with_fingers_splayed: Initialize Backtesting Parameters
+### Initialize Backtesting Parameters
+Instantiate object that wraps all variables needed to compute a backtest
+1. Rolling Period
+2. Indicator Projection
+
 ```markdown
 from Indicators.Parameters import Parameters
 
@@ -51,7 +60,11 @@ projection = 0
 par = Parameters(period, projection)
 ```
 
-### :raised_hand_with_fingers_splayed: Compute Backtesting Indicators
+### Compute Backtesting Indicators
+Fetch statistical indicator
+1. Pass Parameters, Price Data
+2. Get Specified Indicator
+
 ```markdown
 
 from Indicators.LeastSquares import get_least_squares
@@ -65,7 +78,11 @@ least_squares_average = get_least_squares(par, close)
 
 ```
 
-### :raised_hand_with_fingers_splayed: Initialize Statistics
+### Initialize Statistics
+Instantiate object that wraps all variables need to compute statistics
+1. Pass Lot Size, Price Data
+2. Get Statistics object
+
 ```markdown
 from Backtesting.Statistics import Statistics
 
@@ -76,7 +93,12 @@ least_squares_low = Statistics(lot_size, len(low[period:]))
 least_squares_close = Statistics(lot_size, len(close[period:]))
 ```
 
-### :raised_hand_with_fingers_splayed: Compute Backtest Results
+### Compute Backtest Results
+Compute backtest results from  selected statistical indicator
+1. Pass Statistics Object
+2. Price Data
+3. Indicator
+
 ```markdown
 from Backtesting.Backtest import get_vanilla_backtest
 
@@ -86,7 +108,9 @@ least_squares_low = get_vanilla_backtest(least_squares_low, low[period:], least_
 least_squares_close = get_vanilla_backtest(least_squares_close, close[period:], least_squares_average)
 ```
 
-### :raised_hand_with_fingers_splayed: Print Statistics
+### Print Statistics
+Print statistics to terminal
+
 ```markdown
 from HelperMethods.Helpers import print_results
 
@@ -95,7 +119,11 @@ names_list = ["Least Squares Open", "Least Squares High", "Least Squares Low", "
 print_results(stats_list, names_list)
 ```
 
-### :raised_hand_with_fingers_splayed: Visualize Results
+### Visualize Results
+1. Distribution
+2. PnL
+3. Volatility
+
 ```markdown
 from HelperMethods.Helpers import plot_backtest_pnl, plot_backtest_distribution
 
@@ -103,19 +131,19 @@ plot_backtest_pnl(stats_list)
 plot_backtest_distribution(stats_list)
 ```
 
-## :raised_hand_with_fingers_splayed: Advanced Features
+## Advanced Features
 
-### :raised_hand_with_fingers_splayed: Pairs Trading
+### Pairs Trading
 ```
 python code here
 ```
 
-### :raised_hand_with_fingers_splayed: Optimization
+### Optimization
 ```markdown
 python code here
 ```
 
-### :raised_hand_with_fingers_splayed: Monte Carlo Simulation
+### Monte Carlo Simulation
 ```markdown
 python code here
 ```
