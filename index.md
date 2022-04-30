@@ -39,6 +39,7 @@ client = Client(endpoint, api_key, accountid, ticker, months)
 
 ### Fetch Historical Data
 Fetch historical data from Tradier and store in numpy arrays
+
 1. Pass Client
 2. Get OHLC price data
 ```markdown
