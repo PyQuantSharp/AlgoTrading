@@ -11,5 +11,23 @@ def get_ticker_symbols():
 
     return ticker_array
 
+def create_data_file(pairs_backtests):
 
+    df = pd.DataFrame([pairs_backtests])
+
+    df.columns =[
+        'Ticker A',
+        'Ticker B',
+        'Open PnL', 
+        'Open Win Rate',
+        'High PnL', 
+        'High Win Rate',
+        'Low PnL', 
+        'Low Win Rate',
+        'Close PnL', 
+        'Close Win Rate',] 
+
+    df.to_csv("PairsBacktest.csv", sep = '\t', encoding = 'utf-8', index = False) 
+
+    return 0
     

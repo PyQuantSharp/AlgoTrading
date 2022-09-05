@@ -23,14 +23,12 @@ from Volatility.VolClusters import get_vol_clusters
 from Examples.Volatility import plot_vol_metrics
 from Examples.Correlation import plot_corr_metrics, plot_pairs_testing
 
-def pairs_backtest(ohlcA, ohlcB, isDisplay, isContrarian):
+def pairs_backtest(ohlcA, ohlcB, period, projection, isDisplay, isContrarian):
     """
     Computes Results for a Pairs Backtest
     """
 
     # Step Three: Initialize Parameters
-    period = 20
-    projection = 0
     par = Parameters(period, projection)
 
     # Volatility Clusters
@@ -92,4 +90,4 @@ def pairs_backtest(ohlcA, ohlcB, isDisplay, isContrarian):
         plot_backtest_distribution(stats_list)
         # plot_performance_statistics(PS)
 
-    return 0
+    return stats_list

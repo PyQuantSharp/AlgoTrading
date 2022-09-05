@@ -7,7 +7,7 @@ def print_results(stats, names):
     Prints Backtest Statistics to Terminal
     """
 
-    myTable = PrettyTable(["OHLC", "Mean", "Standard Deviation", "Win Rate", "Trade Count"])
+    myTable = PrettyTable(["OHLC", "Profit / Loss", "Mean", "Standard Deviation", "Win Rate", "Trade Count"])
 
     for i in range(len(stats)):
 
@@ -18,6 +18,7 @@ def print_results(stats, names):
 
             myTable.add_row([
                 names[i], 
+                round(np.sum(stats[i].trade_results), 2),
                 round(stats[i].mean, 2), 
                 round(stats[i].std, 2), 
                 round(stats[i].win_rate / stats[i].trade_count, 2), 
